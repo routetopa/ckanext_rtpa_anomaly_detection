@@ -2,34 +2,34 @@
    these badges work. The necessary Travis and Coverage config files have been
    generated for you.
 
-.. image:: https://travis-ci.org//ckanext-rtpa_explorative_stats.svg?branch=master
-    :target: https://travis-ci.org//ckanext-rtpa_explorative_stats
+.. image:: https://travis-ci.org//ckanext-rtpa_anomaly_detection.svg?branch=master
+    :target: https://travis-ci.org//ckanext-rtpa_anomaly_detection
 
-.. image:: https://coveralls.io/repos//ckanext-rtpa_explorative_stats/badge.png?branch=master
-  :target: https://coveralls.io/r//ckanext-rtpa_explorative_stats?branch=master
+.. image:: https://coveralls.io/repos//ckanext-rtpa_anomaly_detection/badge.png?branch=master
+  :target: https://coveralls.io/r//ckanext-rtpa_anomaly_detection?branch=master
 
-.. image:: https://pypip.in/download/ckanext-rtpa_explorative_stats/badge.svg
-    :target: https://pypi.python.org/pypi//ckanext-rtpa_explorative_stats/
+.. image:: https://pypip.in/download/ckanext-rtpa_anomaly_detection/badge.svg
+    :target: https://pypi.python.org/pypi//ckanext-rtpa_anomaly_detection/
     :alt: Downloads
 
-.. image:: https://pypip.in/version/ckanext-rtpa_explorative_stats/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-rtpa_explorative_stats/
+.. image:: https://pypip.in/version/ckanext-rtpa_anomaly_detection/badge.svg
+    :target: https://pypi.python.org/pypi/ckanext-rtpa_anomaly_detection/
     :alt: Latest Version
 
-.. image:: https://pypip.in/py_versions/ckanext-rtpa_explorative_stats/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-rtpa_explorative_stats/
+.. image:: https://pypip.in/py_versions/ckanext-rtpa_anomaly_detection/badge.svg
+    :target: https://pypi.python.org/pypi/ckanext-rtpa_anomaly_detection/
     :alt: Supported Python versions
 
-.. image:: https://pypip.in/status/ckanext-rtpa_explorative_stats/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-rtpa_explorative_stats/
+.. image:: https://pypip.in/status/ckanext-rtpa_anomaly_detection/badge.svg
+    :target: https://pypi.python.org/pypi/ckanext-rtpa_anomaly_detection/
     :alt: Development Status
 
-.. image:: https://pypip.in/license/ckanext-rtpa_explorative_stats/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-rtpa_explorative_stats/
+.. image:: https://pypip.in/license/ckanext-rtpa_anomaly_detection/badge.svg
+    :target: https://pypi.python.org/pypi/ckanext-rtpa_anomaly_detection/
     :alt: License
 
 =============
-ckanext-rtpa_explorative_stats
+ckanext-rtpa_anomaly_detection
 =============
 
 .. Put a description of your extension here:
@@ -53,17 +53,17 @@ Installation
    For example installing any non-Python dependencies or adding any required
    config settings.
 
-To install ckanext-rtpa_explorative_stats:
+To install ckanext-rtpa_anomaly_detection:
 
 1. Activate your CKAN virtual environment, for example::
 
      . /usr/lib/ckan/default/bin/activate
 
-2. Install the ckanext-rtpa_explorative_stats Python package into your virtual environment::
+2. Install the ckanext-rtpa_anomaly_detection Python package into your virtual environment::
 
-     pip install ckanext-rtpa_explorative_stats
+     pip install ckanext-rtpa_anomaly_detection
 
-3. Add ``rtpa_explorative_stats`` to the ``ckan.plugins`` setting in your CKAN
+3. Add ``rtpa_anomaly_detection`` to the ``ckan.plugins`` setting in your CKAN
    config file (by default the config file is located at
    ``/etc/ckan/default/production.ini``).
 
@@ -80,18 +80,18 @@ Document any optional config settings here. For example::
 
     # The minimum number of hours to wait before re-checking a resource
     # (optional, default: 24).
-    ckanext.rtpa_explorative_stats.some_setting = some_default_value
+    ckanext.rtpa_anomaly_detection.some_setting = some_default_value
 
 
 ------------------------
 Development Installation
 ------------------------
 
-To install ckanext-rtpa_explorative_stats for development, activate your CKAN virtualenv and
+To install ckanext-rtpa_anomaly_detection for development, activate your CKAN virtualenv and
 do::
 
-    git clone https://github.com//ckanext-rtpa_explorative_stats.git
-    cd ckanext-rtpa_explorative_stats
+    git clone https://github.com//ckanext-rtpa_anomaly_detection.git
+    cd ckanext-rtpa_anomaly_detection
     python setup.py develop
     pip install -r dev-requirements.txt
 
@@ -107,15 +107,15 @@ To run the tests, do::
 To run the tests and produce a coverage report, first make sure you have
 coverage installed in your virtualenv (``pip install coverage``) then run::
 
-    nosetests --nologcapture --with-pylons=test.ini --with-coverage --cover-package=ckanext.rtpa_explorative_stats --cover-inclusive --cover-erase --cover-tests
+    nosetests --nologcapture --with-pylons=test.ini --with-coverage --cover-package=ckanext.rtpa_anomaly_detection --cover-inclusive --cover-erase --cover-tests
 
 
 ---------------------------------
-Registering ckanext-rtpa_explorative_stats on PyPI
+Registering ckanext-rtpa_anomaly_detection on PyPI
 ---------------------------------
 
-ckanext-rtpa_explorative_stats should be availabe on PyPI as
-https://pypi.python.org/pypi/ckanext-rtpa_explorative_stats. If that link doesn't work, then
+ckanext-rtpa_anomaly_detection should be availabe on PyPI as
+https://pypi.python.org/pypi/ckanext-rtpa_anomaly_detection. If that link doesn't work, then
 you can register the project on PyPI for the first time by following these
 steps:
 
@@ -140,10 +140,10 @@ steps:
 
 
 ----------------------------------------
-Releasing a New Version of ckanext-rtpa_explorative_stats
+Releasing a New Version of ckanext-rtpa_anomaly_detection
 ----------------------------------------
 
-ckanext-rtpa_explorative_stats is availabe on PyPI as https://pypi.python.org/pypi/ckanext-rtpa_explorative_stats.
+ckanext-rtpa_anomaly_detection is availabe on PyPI as https://pypi.python.org/pypi/ckanext-rtpa_anomaly_detection.
 To publish a new version to PyPI follow these steps:
 
 1. Update the version number in the ``setup.py`` file.

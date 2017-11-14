@@ -1,0 +1,13 @@
+MANIFEST.in
+README.rst
+setup.py
+ckanext/__init__.py
+ckanext/rtpa_anomaly_detection/__init__.py
+ckanext/rtpa_anomaly_detection/plugin.py
+ckanext/rtpa_anomaly_detection/tests/__init__.py
+ckanext/rtpa_anomaly_detection/tests/test_plugin.py
+ckanext_rtpa_anomaly_detection.egg-info/PKG-INFO
+ckanext_rtpa_anomaly_detection.egg-info/SOURCES.txt
+ckanext_rtpa_anomaly_detection.egg-info/dependency_links.txt
+ckanext_rtpa_anomaly_detection.egg-info/entry_points.txt
+ckanext_rtpa_anomaly_detection.egg-info/top_level.txt

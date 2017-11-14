@@ -9,18 +9,18 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='''ckanext-rtpa_explorative_stats''',
+    name='''ckanext-rtpa_anomaly_detection''',
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # http://packaging.python.org/en/latest/tutorial.html#version
     version='0.0.1',
 
-    description='''Explorative Stats extension''',
+    description='''Anomaly Detection extension''',
     long_description=long_description,
 
     # The project's main homepage.
-    url='https://github.com//ckanext-rtpa_explorative_stats',
+    url='https://github.com//ckanext-rtpa_anomaly_detection',
 
     # Author details
     author='''''',
@@ -78,6 +78,6 @@ setup(
     # pip to create the appropriate form of executable for the target platform.
     entry_points='''
         [ckan.plugins]
-        rtpa_explorative_stats=ckanext.rtpa_explorative_stats.plugin:Rtpa_Explorative_StatsPlugin
+        rtpa_anomaly_detection=ckanext.rtpa_anomaly_detection.plugin:Rtpa_Anomaly_DetectionPlugin
     ''',
 )

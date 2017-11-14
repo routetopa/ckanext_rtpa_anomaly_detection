@@ -1,0 +1,4 @@
+
+        [ckan.plugins]
+        rtpa_anomaly_detection=ckanext.rtpa_anomaly_detection.plugin:Rtpa_Anomaly_DetectionPlugin
+    

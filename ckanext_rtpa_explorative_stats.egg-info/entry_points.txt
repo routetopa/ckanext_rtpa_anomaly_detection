@@ -1,4 +1,0 @@
-
-        [ckan.plugins]
-        rtpa_explorative_stats=ckanext.rtpa_explorative_stats.plugin:Rtpa_Explorative_StatsPlugin
-    
