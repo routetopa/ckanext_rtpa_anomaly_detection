@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block page %}
+
+
+<style>
+            body {font-family: Verdana;}
+            .node {
+              border: solid 1px white;
+              font: 10px sans-serif;
+              line-height: 12px;
+              overflow: hidden;
+              position: absolute;
+              text-indent: 2px;
+            }
+            .c3-line, .c3-focused {stroke-width: 3px !important;}
+            .c3-bar {stroke: white !important; stroke-width: 1;}
+            .c3 text { font-size: 12px; color: grey;}
+            .tick line {stroke: white;}
+            .c3-axis path {stroke: grey;}
+            .c3-circle { opacity: 1 !important; }
+  </style>
+  
+  
+ 
+
+
+  <div
+	   data-module="rtpa_anomaly_detection_view"
+       >
+       <input id="api-link" type="hidden" value="{{resource_url}}" />
+       
+       <div role="tabpanel" class="tab-pane" id="anomaly-detect">
+
+                                <h4>Anomaly detection</h4>
+
+                                <p class="my-2 text-justify">
+                                    Anomaly detection web service implemented for ROUTE-TO-PA project is based on the Local Outlier Factor Algorithm (LOF).
+                                    LOF algorithm is unsupervised nearest neighborhood  based anomaly detection algorithm widely used for multivariate anomaly detection.
+                                    The LOF score is thus basically a ratio of local densities. The normal instances, which densities are as big as the densities of their neighbors, get a score of about 1.0. Anomalies, which have a low local density, will result in larger scores.
+                                    <a href="https://en.wikipedia.org/wiki/Local_outlier_factor" target="_blank">Read more</a>.
+                                </p>
+
+          
+
+                                <p class="my-2">
+                                    <button id="detectAnomaly" onclick="detectAnomaly()" name="" class="span2 btn btn-primary float-right"> <i class="fa fa-bug" aria-hidden="true"></i> Detect Anomaly </button>
+                                </p>
+
+                                <div class="clearfix"></div>
+
+                                <div hidden="True" class='alert alert-success noAnomalyDetected'>No anomaly detected</div>
+                         
+
+                                <div class="anomalyDetectionResults">
+
+                                    <div class="">
+
+                                        <div class="row">
+
+                                            <div class="col-6">
+
+                                                <h5 class="">Results adjustment</h5>
+                                                <div class="anomalyChatsControls">
+
+                                                    <div class="">
+
+                                                        <div class="">
+
+                                                            <div class="">
+                                                                <span class="text-left">
+                                                                    Select a field name for visualisation:
+                                                                </span>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <select id="field-name" class="form-control">
+                                                                    {% for f in numeric_fields %}
+                                                                        <option value="{{f}}">{{f}}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                    <p>
+                                                                        Change visualisation type:
+                                                                    </p>
+
+                                                                    <div class="">
+
+                                                                        <span class="">
+                                                                            <button onclick="updateChartType('scatter')" name="" class="btn btn-outline-primary"> <i class="fa fa-spinner" aria-hidden="true"></i> Scatter Plot </button>
+                                                                            <button onclick="updateChartType('line')" name="" class="btn btn-outline-primary"> <i class="fa fa-spinner" aria-hidden="true"></i> Line Chart </button>
+                                                                            <button onclick="updateChartType('bar')" name="" class="btn btn-outline-primary"> <i class="fa fa-spinner" aria-hidden="true"></i> Bar chart </button>
+                                                                        </span>
+
+                                                                    </div>
+
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <span class="">
+                                                                    Adjust the tolerance threshold value:
+                                                                </span>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <span class="">
+                                                                    <input id="scoreTolerance" class="form-control"  data-slider-id='scoreTolerance' type="text" data-slider-min="0" data-slider-max="5" data-slider-step="0.05" data-slider-value="0.5"/>
+                                                                </span>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <span class="">
+                                                                    Amount of neighbours:
+                                                                </span>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <div id="neighboursAD" class="">
+
+                                                                    <span class="">
+                                                                        <input id="neighboursCount" class="form-control" data-slider-id='neighboursCount' type="text" data-slider-min="1" data-slider-max="12" data-slider-step="1" data-slider-value="10"/>
+                                                                    </span>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                                
+                                                </div>
+       
+       
+       
+  
+  
+  
+  
+			
+
+  </div>
+
+
+{% resource 'rtpa_anomaly_detection/main' %}
+{% endblock %}
+
+{% block styles %}{% endblock %}
+{% block custom_styles %}{% endblock %}
