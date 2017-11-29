@@ -20,11 +20,8 @@
             .c3-axis path {stroke: grey;}
             .c3-circle { opacity: 1 !important; }
   </style>
-  
-  
- 
-
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.0/d3.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.18/c3.min.js"></script>
   <div
 	   data-module="rtpa_anomaly_detection_view"
        >
@@ -41,10 +38,10 @@
                                     <a href="https://en.wikipedia.org/wiki/Local_outlier_factor" target="_blank">Read more</a>.
                                 </p>
 
-          
+        			{% if numeric_fields|length >0 %}
 
                                 <p class="my-2">
-                                    <button id="detectAnomaly" onclick="detectAnomaly()" name="" class="span2 btn btn-primary float-right"> <i class="fa fa-bug" aria-hidden="true"></i> Detect Anomaly </button>
+                                    <button id="detectAnomaly" onClick="detectAnomaly()" name="" class="span2 btn btn-primary float-right"> <i class="fa fa-bug" aria-hidden="true"></i> Detect Anomaly </button>
                                 </p>
 
                                 <div class="clearfix"></div>
@@ -61,78 +58,154 @@
                                             <div class="col-6">
 
                                                 <h5 class="">Results adjustment</h5>
-                                                <div class="anomalyChatsControls">
+                                            	    <div class="anomalyChatsControls">
+
+                                                <div class="">
 
                                                     <div class="">
 
                                                         <div class="">
+                                                            <span class="text-left">
+                                                                Select a field name for visualisation:
+                                                            </span>
+                                                        </div>
 
-                                                            <div class="">
-                                                                <span class="text-left">
-                                                                    Select a field name for visualisation:
-                                                                </span>
-                                                            </div>
+                                                        <div class="form-group">
+                                                            <select id="field-name" class="form-control">
+                                                                {% for f in numeric_fields %}
+                                                                    <option value="{{f}}">{{f}}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </div>
 
-                                                            <div class="form-group">
-                                                                <select id="field-name" class="form-control">
-                                                                    {% for f in numeric_fields %}
-                                                                        <option value="{{f}}">{{f}}</option>
-                                                                    {% endfor %}
-                                                                </select>
-                                                            </div>
+                                                        <div class="form-group">
+                                                                <p>
+                                                                    Change visualisation type:
+                                                                </p>
 
-                                                            <div class="form-group">
-                                                                    <p>
-                                                                        Change visualisation type:
-                                                                    </p>
-
-                                                                    <div class="">
-
-                                                                        <span class="">
-                                                                            <button onclick="updateChartType('scatter')" name="" class="btn btn-outline-primary"> <i class="fa fa-spinner" aria-hidden="true"></i> Scatter Plot </button>
-                                                                            <button onclick="updateChartType('line')" name="" class="btn btn-outline-primary"> <i class="fa fa-spinner" aria-hidden="true"></i> Line Chart </button>
-                                                                            <button onclick="updateChartType('bar')" name="" class="btn btn-outline-primary"> <i class="fa fa-spinner" aria-hidden="true"></i> Bar chart </button>
-                                                                        </span>
-
-                                                                    </div>
-
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <span class="">
-                                                                    Adjust the tolerance threshold value:
-                                                                </span>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <span class="">
-                                                                    <input id="scoreTolerance" class="form-control"  data-slider-id='scoreTolerance' type="text" data-slider-min="0" data-slider-max="5" data-slider-step="0.05" data-slider-value="0.5"/>
-                                                                </span>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <span class="">
-                                                                    Amount of neighbours:
-                                                                </span>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <div id="neighboursAD" class="">
+                                                                <div class="">
 
                                                                     <span class="">
-                                                                        <input id="neighboursCount" class="form-control" data-slider-id='neighboursCount' type="text" data-slider-min="1" data-slider-max="12" data-slider-step="1" data-slider-value="10"/>
+                                                                        <button onclick="updateChartType('scatter')" name="" class="btn btn-outline-primary"> <i class="fa fa-spinner" aria-hidden="true"></i> Scatter Plot </button>
+                                                                        <button onclick="updateChartType('line')" name="" class="btn btn-outline-primary"> <i class="fa fa-spinner" aria-hidden="true"></i> Line Chart </button>
+                                                                        <button onclick="updateChartType('bar')" name="" class="btn btn-outline-primary"> <i class="fa fa-spinner" aria-hidden="true"></i> Bar chart </button>
                                                                     </span>
 
                                                                 </div>
-                                                            </div>
 
                                                         </div>
 
+                                                        <div class="form-group">
+                                                            <span class="">
+                                                                Adjust the tolerance threshold value:
+                                                            </span>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <span class="">
+                                                                <input id="scoreTolerance" class="form-control"  data-slider-id='scoreTolerance' type="text" data-slider-min="0" data-slider-max="5" data-slider-step="0.05" data-slider-value="0.5"/>
+                                                            </span>
+                                                        </div>
+
+							<div id="dimension-chart" class="top20">
+                                    			    <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+                                		        </div>
+
+                                            	        <div class="form-group">
+                                                            <span class="">
+                                                                Amount of neighbours:
+                                                            </span>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <div id="neighboursAD" class="">
+
+                                                                <span class="">
+                                                                    <input id="neighboursCount" class="form-control" data-slider-id='neighboursCount' type="text" data-slider-min="1" data-slider-max="12" data-slider-step="1" data-slider-value="10"/>
+                                                                </span>
+
+                                                            </div>
+                                                        </div>
+
+                                                        
+
+                                                    </div>
+
+                                            
+
+
+						<div class="col-6">
+
+                                                <h5 class="top20">Anomaly detection configuration</h5>
+                                                <div id="anomaly-configuration" class="">
+
+                                                    <div class="span6">
+                                                        <p>By default all the columns are used to calculate the anomaly score. You can re-calculate the scores by selecting the fields.</p>
+                                                    </div>
+
+                                                    <div class="span6">
+
+                                                        <div class="anomalyConfigurationAlert alert alert-info">
+                                                          <strong><i class="fa fa-info" aria-hidden="true"></i></strong> Please select at least one item.
+                                                        </div>
+
+                                                        <label class="checkbox" style="display: none;">
+                                                            <input type="checkbox" value="_id" class="anomalyDimensionCheckbox" checked="checked"> _id - <small><i>int4</i></small>
+                                                        </label>
+
+                                                        {% for f in resource_fields %}
+                                                            {% if f.id != '_id' %}
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" value="{{f}}" class="anomalyDimensionCheckbox"> {{f}} - <small><i>{{f.type }}</i></small>
+                                                                </label>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </div>
+
+                                                    <div class="span6 top20">
+                                                        <button id="recalculateAnomaly" onclick="recalculateAnomaly()" name="" class="btn btn-outline-primary"> <i class="fa fa-cogs" aria-hidden="true"></i>Recalculate Results </button>
                                                     </div>
 
                                                 </div>
-                                                
-                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <h5 class="top30">Anomaly visualisation</h5>
+                                        <div id="dimension-chart" class="top20">
+                                            <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+                                        </div>
+
+                                        <div id="anomaly-chart" class="top20">
+                                            <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+                                        </div>
+
+                                        <h5 class="top20">Anomaly table</h5>
+                                        <div id="anomaly-output" class="top20">
+                                            <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+                                        </div>
+
+                                    </div>
+				</div>
+
+                            </div>
+
+
+                            {% else %}
+
+                            <div class="alert alert-warning mt-3" role="alert">
+                              <strong>Warning!</strong> Looks like this resource does not contains any numeric fields. Anomaly detection is not available
+                            </div>
+
+                            {% endif %}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
        
        
        

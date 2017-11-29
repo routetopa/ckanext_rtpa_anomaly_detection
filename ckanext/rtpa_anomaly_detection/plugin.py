@@ -1,6 +1,9 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from pylons import config
+import urllib2
+import pandas as pd
+from ckan.common import json
 
 
 class Rtpa_Anomaly_DetectionPlugin(plugins.SingletonPlugin):
@@ -23,6 +26,14 @@ class Rtpa_Anomaly_DetectionPlugin(plugins.SingletonPlugin):
 				'default_title': 'Anomaly Detection',
 				}
 
+	def getFields(self,context,data_dict):
+		url=self.getResourceURL(context,data_dict)
+		data=json.loads(urllib2.urlopen(url).read())
+		Dataframe=pd.read_json(json.dumps(data['result']['records']))
+		NumericColumns=(Dataframe.select_dtypes(exclude=['object','datetime']).columns)
+		AllColumns=Dataframe.columns
+		return NumericColumns,AllColumns
+
 	def getResourceURL(self,context,data_dict):
 		datasetId=(data_dict['resource']['id'])
 		ckanurl=config.get('ckan.site_url', '')
@@ -37,5 +48,8 @@ class Rtpa_Anomaly_DetectionPlugin(plugins.SingletonPlugin):
 		
 	def setup_template_variables(self, context, data_dict):
 		DataUrl=self.getResourceURL(context,data_dict)
-		return {'resource_url': DataUrl}
+		NumericFields,AllFields=self.getFields(context,data_dict)
+		return {'resource_url': DataUrl,
+			'numeric_fields': NumericFields,
+			'resource_fields': AllFields}
 		

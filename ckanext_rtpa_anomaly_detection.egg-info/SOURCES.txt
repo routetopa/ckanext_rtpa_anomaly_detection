@@ -4,6 +4,10 @@ setup.py
 ckanext/__init__.py
 ckanext/rtpa_anomaly_detection/__init__.py
 ckanext/rtpa_anomaly_detection/plugin.py
+ckanext/rtpa_anomaly_detection/fanstatic/rtpa_anomaly_detection-view.js
+ckanext/rtpa_anomaly_detection/fanstatic/css/c3.css
+ckanext/rtpa_anomaly_detection/fanstatic/js/c3.js
+ckanext/rtpa_anomaly_detection/templates/rtpa_anomaly_detection-view.html
 ckanext/rtpa_anomaly_detection/tests/__init__.py
 ckanext/rtpa_anomaly_detection/tests/test_plugin.py
 ckanext_rtpa_anomaly_detection.egg-info/PKG-INFO
